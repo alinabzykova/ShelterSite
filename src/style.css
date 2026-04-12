@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+.font-logo {
+  font-family: 'Rubik Spray Paint', cursive;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
