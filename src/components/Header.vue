@@ -1,5 +1,6 @@
 <template>
-  <header class="bg-gray-300 rounded-[40px] px-12 py-6 mb-6">
+  <header class="bg-gray-300 rounded-[40px] px-12 py-6 mb-6"
+   :class="$route.path === '/' ? 'bg-gray-300' : 'bg-white'"> <!-- цирковой номер: если не главное меню то цвет хедера белый как типа на макете -->
 
     <div class="flex justify-between items-center">
 
