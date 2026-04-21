@@ -1,18 +1,13 @@
 <template>
-    <div class="p-10 text-3x1"> 
-        <h2>Вход</h2>
+    <div class=" ">  
  
     <LoginForm v-if="isLoginMode" />
     <RegisterForm v-else /> 
     <div class="auth-toggle"> 
-        <a 
-          class="toggle-link" 
-          href="#" 
-          @click.prevent="isLoginMode = !isLoginMode"
-        >
-          {{ isLoginMode ? 'Нет аккаунта? Зарегистрироваться' : 'Уже есть аккаунт? Войти' }}
-        </a>
+        
       </div>
+      <Footer />
+
      </div>
      
 </template>
@@ -21,6 +16,7 @@
 import { ref } from 'vue'
 import LoginForm from '../components/LoginForm.vue'
 import  RegisterForm from '../components/RegisterForm.vue'
+import Footer from '../components/Footer.vue'
 
 const isLoginMode = ref(true)
 </script>

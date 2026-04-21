@@ -1,5 +1,10 @@
-g<template>
+<template> 
+<div class="all-the-page">
+
 <div class="that-left-header-dog-thing">
+
+    </div>
+<div class="form-wrapper">
     <form class="auth-form" >
              <div>
       <label>Имя</label>
@@ -24,4 +29,5 @@ g<template>
     <button type="submit">Зарегистрироваться</button>
     </form>
     </div>
+</div>
 </template>
