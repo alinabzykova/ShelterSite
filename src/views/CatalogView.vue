@@ -3,12 +3,12 @@ import { ref, computed } from 'vue'
 import AnimalCard from '@/components/AnimalCard.vue'
 
 const animals = ref([
-  { id: 1, name: 'Рекс', age: 3, size: 'Большой', image: '/images/dog1.jpg' },
-  { id: 2, name: 'Бобик', age: 2, size: 'Средний', image: '/images/dog2.jpg' },
-  { id: 3, name: 'Лайка', age: 1, size: 'Маленький', image: '/images/dog3.jpg' },
-  { id: 4, name: 'Джек', age: 4, size: 'Большой', image: '/images/dog1.jpg' },
-  { id: 5, name: 'Тузик', age: 5, size: 'Средний', image: '/images/dog2.jpg' },
-  { id: 6, name: 'Шарик', age: 5, size: 'Маленький', image: '/images/dog3.jpg' }
+  { id: 1, name: 'Рекс', age: 1, size: 'Маленький', images: '/images/dogs/Рекс 1.jpg' },
+  { id: 2, name: 'Бобик', age: 4, size: 'Большой', images: '/images/dogs/Бобик 1.jpg' },
+  { id: 3, name: 'Лайка', age: 3, size: 'Средний', images: '/images/dogs/Лайка 1.jpg' },
+  { id: 4, name: 'Джек', age: 5, size: 'Большой', images: '/images/dogs/Джек 1.jpg' },
+  { id: 5, name: 'Тузик', age: 3, size: 'Средний', images: '/images/dogs/Тузик 1.jpg' },
+  { id: 6, name: 'Шарик', age: 1, size: 'Маленький', images: '/images/dogs/Шарик 1.png' }
 ])
 
 const selectedSize = ref('')
@@ -25,7 +25,7 @@ const filteredAnimals = computed(() => {
 </script>
 
 <template>
-  <div class="bg-[#f5f5f5] min-h-screen px-10 py-10">
+  <div class="bg-[#f5f5f5] min-h-screen px-4 sm:px-6 lg:px-10 py-6">
 
     <!-- ФИЛЬТР -->
     <div class="bg-white rounded-3xl p-6 mb-10 shadow-sm">
@@ -37,7 +37,7 @@ const filteredAnimals = computed(() => {
           Фильтр
         </h2>
 
-        <div class="flex gap-8 text-lg mr-10">
+        <div class="flex gap-8 text-lg mr-0 lg:mr-10">
           <router-link to="/" class="hover:text-red-500">
             Главная
           </router-link>
@@ -77,7 +77,7 @@ const filteredAnimals = computed(() => {
     </div>
 
     <!-- КАРТОЧКИ -->
-    <div class="grid grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <AnimalCard
         v-for="animal in filteredAnimals"
         :key="animal.id"

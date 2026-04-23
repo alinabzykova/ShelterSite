@@ -8,12 +8,12 @@ const route = useRoute()
 const animalId = Number(route.params.id)
 
 const animals = [
-  { id: 1, name: 'Рекс', age: 3, size: 'Большой', images: [ '/images/dog1.jpg', '/images/dog2.jpg', '/images/dog3.jpg'], description: 'Очень дружелюбный пёс' },
-  { id: 2, name: 'Бобик', age: 2, size: 'Средний', image: '/images/dog2.jpg', description: 'Активный и умный' },
-  { id: 3, name: 'Лайка', age: 1, size: 'Маленький', image: '/images/dog3.jpg', description: 'Ласковая и спокойная' },
-  { id: 4, name: 'Джек', age: 4, size: 'Большой', image: '/images/dog1.jpg', description: 'Очень преданный' },
-  { id: 5, name: 'Тузик', age: 5, size: 'Средний', image: '/images/dog2.jng', description: 'Любит гулять' },
-  { id: 6, name: 'Снежок', age: 2, size: 'Маленький', image: '/images/dog3.jng', description: 'Очень ласковый' }
+  { id: 1, name: 'Рекс', age: 1, size: 'Маленький', images: ['/images/dogs/Рекс 1.jpg','/images/dogs/Рекс 2.jpg','/images/dogs/Рекс 3.jpg'], description: 'Очень дружелюбный и общительный пёс' },
+  { id: 2, name: 'Бобик', age: 4, size: 'Большой', images: ['/images/dogs/Бобик 1.jpg','/images/dogs/Бобик 2.jpg','/images/dogs/Бобик 3.jpg'], description: 'Ласковый, дружелюбный, активный, умный, внимательный' },
+  { id: 3, name: 'Лайка', age: 3, size: 'Средний', images: ['/images/dogs/Лайка 1.jpg','/images/dogs/Лайка 2.jpg','/images/dogs/Лайка 3.jpg'], description: 'Ласковая и спокойная' },
+  { id: 4, name: 'Джек', age: 5, size: 'Большой', images: ['/images/dogs/Джек 1.jpg','/images/dogs/Джек 2.jpg','/images/dogs/Джек 3.jpeg'], description: 'Преданный, ласковый, активный.' },
+  { id: 5, name: 'Тузик', age: 3, size: 'Средний', images: ['/images/dogs/Тузик 1.jpg','/images/dogs/Тузик 2.jpg','/images/dogs/Тузик 3.jpg'], description: 'Любит гулять' },
+  { id: 6, name: 'Шарик', age: 1, size: 'Маленький', images: ['/images/dogs/Шарик 1.png','/images/dogs/Шарик 2.png','/images/dogs/Шарик 3.png'], description: 'Очень ласковый и нежный' }
 ]
 
 let animal = null
@@ -45,14 +45,14 @@ function getAgeText(age) {
 
     <div v-if="animal" class="bg-white rounded-3xl p-8 max-w-5xl mx-auto shadow-sm">
 
-      <div class="grid grid-cols-2 gap-10 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
         <div>
 
     <!-- БОЛЬШОЕ ФОТО -->
     <img
         :src="selectedImage"
-        class="w-full h-[400px] object-cover rounded-2xl"
+        class="w-full h-64 sm:h-80 lg:h-[400px] object-cover rounded-2xl"
     />
 
     <!-- МАЛЕНЬКИЕ ФОТО -->
@@ -70,7 +70,7 @@ function getAgeText(age) {
         <!-- ИНФОРМАЦИЯ -->
         <div>
 
-          <h1 class="text-4xl font-bold mb-4">
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
             {{ animal.name }}
           </h1>
 

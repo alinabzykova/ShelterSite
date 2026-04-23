@@ -12,12 +12,12 @@ function getAgeText(age){
 
 <template>
     <router-link :to="`/animal/${animal.id}`">
-      <div class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-md transition cursur-pointer">
+      <div class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-md transition cursor-pointer">
 
         <img
-          :src="animal.image"
+          :src="animal.images"
           alt=""
-          class="w-full h-56 object-cover rounded-2xl"
+          class="w-full aspect-square object-cover rounded-2xl"
         />
 
         <h2 class="text-xl font-bold mt-4">
