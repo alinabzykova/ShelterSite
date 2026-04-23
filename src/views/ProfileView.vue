@@ -14,7 +14,7 @@
 
             <div class="info   rounded-[40px]">
                 <div class="description bg-white rounded-[40px] justify-self-center self-center p-5 break-words">
-    Здесь будет описание питомца. Оно может
+    Здесь будет описание вашего профиля. Оно может
      быть длинным и занимать несколько строк.  
 
                 </div>
