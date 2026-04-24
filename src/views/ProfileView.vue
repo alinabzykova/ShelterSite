@@ -78,11 +78,11 @@ import Header from '../components/Header.vue'
     </div>
 
     <!-- FOOTER -->
-    <footer class="mt-10 bg-red-900 text-white py-4 px-6 flex justify-between text-sm">
-      <span>+7 (999) 999-99-99</span>
-      <span>г. Владикавказ</span>
-      <span>© 2026</span>
-    </footer>
+   <footer class="bg-[#7a0000] text-white mt-6 px-10 py-4 flex justify-end gap-x-8 rounded-[20px]">
+    <div>+7 (999) 999-99-99</div>
+    <div>г. Владикавказ</div>
+    <div>© 2026</div>
+  </footer>
 
   </div>
 </template>
