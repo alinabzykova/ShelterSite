@@ -22,12 +22,11 @@ import Header from '../components/Header.vue'
 
         <!-- ИМЯ -->
         <div class="text-center lg:text-left">
-          <h1 class="text-4xl lg:text-6xl font-bold text-white">
+          <h1 class="text-4xl lg:text-8xl font-bold text-white mt-30">
             ИМЯ
           </h1>
 
-          <!-- СМЕЩАЕМ НИЖЕ -->
-          <h2 class="text-xl lg:text-2xl text-white mt-10 font-semibold">
+          <h2 class="text-xl lg:text-2xl text-white mt-30 font-semibold">
             ИЗБРАННОЕ
           </h2>
         </div>
@@ -51,9 +50,6 @@ import Header from '../components/Header.vue'
         <!-- ИЗБРАННОЕ -->
         <div class="flex flex-col gap-4">
 
-          <div class="bg-white rounded-3xl p-4 font-bold text-center">
-            ССЫЛКИ НА ПРИЮЧЕННЫХ ЖИВОТНЫХ
-          </div>
 
           <div class="bg-white rounded-3xl p-4">
             /animal/1 — Рекс
