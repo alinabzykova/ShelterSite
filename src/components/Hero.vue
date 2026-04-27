@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-red-500 rounded-[40px] px-12 py-10 flex items-center justify-between">
+  <section class="bg-red-500 relative rounded-[40px] px-12 py-10 mb-8 flex items-center justify-between">
 
     <!-- ЛЕВО -->
     <div class="text-white max-w-[600px]">
@@ -50,7 +50,10 @@
     </div>
 
     <!-- СОБАКА -->
-    <img src="/images/dog.png" class="w-[550px] -mr-10" />
+    <img 
+      src="/images/dog.png"
+      class="absolute bottom-0 left-3/4 -translate-x-1/2"
+    />
 
   </section>
 </template>

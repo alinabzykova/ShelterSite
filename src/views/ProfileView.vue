@@ -12,8 +12,21 @@
         <div class="imya">
           <h1 class="named text-9xl">ИМЯ</h1>
         </div>
+<<<<<<< makifav
         <div class="izbrannoe">
           <h1 class="named text-4xl">ИЗБРАННОЕ</h1>
+=======
+
+        <!-- ИМЯ -->
+        <div class="text-center lg:text-left">
+          <h1 class="text-4xl lg:text-8xl font-bold text-white mt-30">
+            ИМЯ
+          </h1>
+
+          <h2 class="text-xl lg:text-2xl text-white mt-30 font-semibold">
+            ИЗБРАННОЕ
+          </h2>
+>>>>>>> main
         </div>
       </div>
 
@@ -23,12 +36,18 @@
           Здесь будет описание вашего профиля. Оно может быть длинным и занимать несколько строк.
         </div>
 
+<<<<<<< makifav
         <div class="featured">
           
           <div v-if="favoriteAnimals.length === 0" class="bg-white rounded-[40px] p-5 text-center text-gray-400">
             Нет избранных животных 😢
             <router-link to="/catalog" class="block text-red-500 mt-2">Перейти в каталог →</router-link>
           </div>
+=======
+        <!-- ИЗБРАННОЕ -->
+        <div class="flex flex-col gap-4">
+
+>>>>>>> main
 
           <div 
             v-for="animal in favoriteAnimals" 
@@ -124,7 +143,16 @@ const animals = ref([
 
 const { getFavoriteAnimals } = useFavorites()
 
+<<<<<<< makifav
 const favoriteAnimals = computed(() => getFavoriteAnimals(animals.value))
+=======
+    <!-- FOOTER -->
+   <footer class="bg-[#7a0000] text-white mt-6 px-10 py-4 flex justify-end gap-x-8 rounded-[20px]">
+    <div>+7 (999) 999-99-99</div>
+    <div>г. Владикавказ</div>
+    <div>© 2026</div>
+  </footer>
+>>>>>>> main
 
 const goToAnimal = (animalId) => {
   router.push(`/animal/${animalId}`)
