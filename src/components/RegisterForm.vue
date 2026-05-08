@@ -29,3 +29,9 @@
     </button>
   </form>
 </template>
+
+<script setup>
+const handleRegister = () => { 
+  isLoginMode.value = true  ;
+}
+</script>
