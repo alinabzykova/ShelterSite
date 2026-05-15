@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="flex flex-col min-h-screen bg-gray-50">
 
     <!-- ОСНОВНОЙ КОНТЕНТ -->
     <div class="all-the-page flex-1 rounded-[20px]">
@@ -19,26 +19,111 @@
       </div>
 
       <!-- ПРАВАЯ ЧАСТЬ -->
-      <div class="flex flex-col justify-between relative">
+      <div class="flex flex-col justify-between relative bg-white">
 
         <nav class="absolute top-5 right-5 flex gap-10 text-black text-xl z-10">
-          <router-link to="/">Главная</router-link>
-          <router-link to="/catalog">Каталог</router-link>
-          <router-link to="/profile">Профиль</router-link> 
+          <router-link to="/" class="hover:text-red-600 transition">Главная</router-link>
+          <router-link to="/catalog" class="hover:text-red-600 transition">Каталог</router-link>
+          <router-link to="/profile" class="hover:text-red-600 transition">Профиль</router-link> 
         </nav> 
 
-        <div class="flex justify-center items-center flex-grow">
-          <div class="flex flex-col items-center w-full max-w-[400px]">
+        <div class="flex justify-center items-center flex-grow min-h-[500px]">
+          <div class="flex flex-col items-center w-full max-w-[400px] px-4">
 
-            <LoginForm v-if="isLoginMode" />
-            <RegisterForm v-else />
+            <!-- Форма входа -->
+            <div v-if="isLoginMode" class="w-full">
+              <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Вход в аккаунт</h2>
+              
+              <form @submit.prevent="handleLogin" class="space-y-4">
+                <div>
+                  <label class="block text-gray-700 mb-2">Email</label>
+                  <input 
+                    type="email" 
+                    v-model="loginForm.email"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-red-500"
+                    required
+                  >
+                </div>
+                
+                <div>
+                  <label class="block text-gray-700 mb-2">Пароль</label>
+                  <input 
+                    type="password" 
+                    v-model="loginForm.password"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-red-500"
+                    required
+                  >
+                </div>
+                
+                <button 
+                  type="submit"
+                  class="w-full bg-red-600 text-white py-2 rounded-lg font-semibold hover:bg-red-700 transition"
+                >
+                  Войти
+                </button>
+              </form>
+            </div>
 
-            <hr class="w-full border-t-2 border-gray-200 my-4">
+            <!-- Форма регистрации -->
+            <div v-else class="w-full">
+              <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Регистрация</h2>
+              
+              <form @submit.prevent="handleRegister" class="space-y-4">
+                <div>
+                  <label class="block text-gray-700 mb-2">Имя</label>
+                  <input 
+                    type="text" 
+                    v-model="registerForm.name"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-red-500"
+                    required
+                  >
+                </div>
+                
+                <div>
+                  <label class="block text-gray-700 mb-2">Email</label>
+                  <input 
+                    type="email" 
+                    v-model="registerForm.email"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-red-500"
+                    required
+                  >
+                </div>
+                
+                <div>
+                  <label class="block text-gray-700 mb-2">Пароль</label>
+                  <input 
+                    type="password" 
+                    v-model="registerForm.password"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-red-500"
+                    required
+                  >
+                </div>
+                
+                <div>
+                  <label class="block text-gray-700 mb-2">Подтвердите пароль</label>
+                  <input 
+                    type="password" 
+                    v-model="registerForm.confirmPassword"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-red-500"
+                    required
+                  >
+                </div>
+                
+                <button 
+                  type="submit"
+                  class="w-full bg-red-600 text-white py-2 rounded-lg font-semibold hover:bg-red-700 transition"
+                >
+                  Зарегистрироваться
+                </button>
+              </form>
+            </div>
+
+            <hr class="w-full border-t-2 border-gray-200 my-6">
 
             <p class="mt-5 text-center">
-              <a @click.prevent="isLoginMode = !isLoginMode" class="text-black text-sm">
+              <a @click.prevent="isLoginMode = !isLoginMode" class="text-black text-sm cursor-pointer">
                 {{ isLoginMode ? 'Нет аккаунта?' : 'Есть аккаунт?' }} 
-                <span class="text-red-700">
+                <span class="text-red-700 hover:underline">
                   {{ isLoginMode ? 'Зарегистрироваться' : 'Войти' }}
                 </span>
               </a>
@@ -51,19 +136,73 @@
 
     </div>
 
-    <!-- FOOTER -->
-    <Footer />
+    <!-- ПРОСТОЙ ФУТЕР ТЕМНО-КРАСНОГО ЦВЕТА -->
+    <footer class="bg-red-900 text-white py-4">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-2 text-sm">
+          <p>© 2024 Приют "Спасённый хвост"</p>
+          <div class="flex gap-6">
+            <a href="#" class="hover:text-red-300 transition">О нас</a>
+            <a href="#" class="hover:text-red-300 transition">Контакты</a>
+            <a href="#" class="hover:text-red-300 transition">Помощь</a>
+          </div>
+        </div>
+      </div>
+    </footer>
 
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import LoginForm from '../components/LoginForm.vue'
-import RegisterForm from '../components/RegisterForm.vue'
-import Footer from '../components/Footer.vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const isLoginMode = ref(true)
+
+// Форма входа
+const loginForm = ref({
+  email: '',
+  password: ''
+})
+
+// Форма регистрации
+const registerForm = ref({
+  name: '',
+  email: '',
+  password: '',
+  confirmPassword: ''
+})
+
+// Обработка входа
+const handleLogin = () => {
+  if (loginForm.value.email && loginForm.value.password) {
+    localStorage.setItem('isLoggedIn', 'true')
+    localStorage.setItem('userEmail', loginForm.value.email)
+    alert('Успешный вход!')
+    router.push('/profile')
+  } else {
+    alert('Пожалуйста, заполните все поля')
+  }
+}
+
+// Обработка регистрации
+const handleRegister = () => {
+  if (registerForm.value.password !== registerForm.value.confirmPassword) {
+    alert('Пароли не совпадают')
+    return
+  }
+  
+  if (registerForm.value.name && registerForm.value.email && registerForm.value.password) {
+    localStorage.setItem('isLoggedIn', 'true')
+    localStorage.setItem('userEmail', registerForm.value.email)
+    localStorage.setItem('userName', registerForm.value.name)
+    alert('Регистрация успешна!')
+    router.push('/profile')
+  } else {
+    alert('Пожалуйста, заполните все поля')
+  }
+}
 </script>
 
 <style scoped>

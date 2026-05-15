@@ -1,77 +1,138 @@
 <template>
-  <div class="min-h-screen bg-[url('/images/shelterbg.png')] bg-cover bg-center p-10">
+  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
     <Header />
-
-    <div class="profile-itself max-w-[1200px] mx-auto rounded-[40px]">
-      
-      <!-- аватарка -->
-      <div class="avatar bg-red-900 rounded-full justify-self-center self-center">
-        <img src="/images/paw.png">
-      </div>
-
-      <!-- имя и заголовок -->
-      <div class="name rounded-[40px] p-2 flex flex-col justify-center">
-        <div class="text-center lg:text-left">
-          <h1 class="text-4xl lg:text-8xl font-bold text-white">
-            ИМЯ
-          </h1>
-
-          <h2 class="text-xl lg:text-2xl text-white mt-6 font-semibold">
-            ИЗБРАННОЕ
-          </h2>
-        </div>
-      </div>
-
-      <!-- нижняя часть -->
-      <div class="info rounded-[40px]">
+    
+    <div class="container mx-auto px-4 py-8">
+      <div class="max-w-6xl mx-auto">
         
-        <!-- описание -->
-        <div class="description bg-white rounded-[40px] p-5 min-h-[300px]">
-          Здесь будет описание вашего профиля. Оно может быть длинным и занимать несколько строк.
-        </div>
-
-        <!-- избранное -->
-        <div class="flex flex-col gap-4">
-
-          <div v-if="favoriteAnimals.length === 0" class="bg-white rounded-[40px] p-5 text-center text-gray-400">
-            Нет избранных животных 😢
-            <router-link to="/catalog" class="block text-red-500 mt-2">
-              Перейти в каталог →
-            </router-link>
-          </div>
-
-          <div 
-            v-for="animal in favoriteAnimals" 
-            :key="animal.id"
-            class="bg-white rounded-[40px] p-5 hover:bg-gray-50 transition cursor-pointer"
-            @click="goToAnimal(animal.id)"
-          >
-            <div class="flex items-center gap-4">
+        <div class="bg-gradient-to-r from-[#5C0000] to-[#8B0000] rounded-3xl shadow-xl overflow-hidden mb-6">
+          <div class="flex flex-col md:flex-row items-center gap-8 p-8">
+            
+            <!-- Аватарка -->
+            <div class="w-32 h-32 md:w-40 md:h-40 bg-white rounded-full flex items-center justify-center shadow-lg overflow-hidden">
               <img 
-                :src="animal.image" 
-                class="w-12 h-12 rounded-full object-cover"
+                v-if="avatarUrl" 
+                :src="avatarUrl" 
+                class="w-full h-full object-cover"
               >
-              <div>
-                <h3 class="font-bold text-lg">{{ animal.name }}</h3>
-                <p class="text-gray-500 text-sm">
-                  {{ getAgeText(animal.age) }} · {{ animal.size }}
-                </p>
+              <img 
+                v-else 
+                src="/images/avatar.jpg"
+              >
+            </div>
+            
+
+            <div class="flex-1 text-center md:text-left">
+              <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">
+                {{ userName }}
+              </h1>
+              <p class="text-red-200">На сайте с {{ joinDate }}</p>
+              
+
+              <div class="mt-6 pt-4 border-t border-red-400/30">
+                <div>
+                  <div class="text-2xl font-bold text-white">{{ favoriteCount }}</div>
+                  <div class="text-sm text-red-200">В избранном</div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          
+          <div class="space-y-6">
+            
+  
+            <div class="bg-white rounded-2xl shadow-md p-6">
+              <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <span>📝</span> О себе
+              </h2>
+              <p class="text-gray-600 leading-relaxed">
+                {{ aboutText }}
+              </p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-md p-6">
+              <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <span>📞</span> Контакты
+              </h2>
+              <div class="space-y-3">
+                <div class="flex items-center gap-3 text-gray-600">
+                  <span class="text-lg">📧</span>
+                  <span>{{ userEmail }}</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-600">
+                  <span class="text-lg">📱</span>
+                  <span>{{ userPhone }}</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-600">
+                  <span class="text-lg">📍</span>
+                  <span>{{ userCity }}</span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+
+          <div class="bg-white rounded-2xl shadow-md p-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <span>❤️</span> Избранное
+              <span class="text-sm text-gray-400 ml-2">({{ favoriteCount }})</span>
+            </h2>
+            
+            <div v-if="favoriteAnimalsList.length === 0" class="text-center py-12">
+              <div class="text-6xl mb-4">🐕</div>
+              <p class="text-gray-400 mb-4">У вас пока нет избранных животных</p>
+              <router-link 
+                to="/catalog" 
+                class="inline-block bg-[#DE2E2E] text-white px-6 py-2 rounded-full hover:bg-opacity-80 transition"
+              >
+                Перейти в каталог →
+              </router-link>
+            </div>
+            
+            <div v-else class="space-y-3 max-h-[500px] overflow-y-auto pr-2">
+              <div 
+                v-for="animal in favoriteAnimalsList" 
+                :key="animal.id"
+                class="flex items-center gap-4 p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition cursor-pointer group"
+                @click="goToAnimal(animal.id)"
+              >
+                <img 
+                  :src="animal.image || '/images/paw.png'" 
+                  :alt="animal.name"
+                  class="w-16 h-16 rounded-xl object-cover"
+                  @error="handleImageError"
+                >
+                <div class="flex-1">
+                  <h3 class="font-bold text-gray-800 group-hover:text-[#DE2E2E] transition">
+                    {{ animal.name }}
+                  </h3>
+                  <p class="text-gray-500 text-sm">
+                    {{ getAgeText(animal.age) }} · {{ animal.size }}
+                  </p>
+                </div>
+                <button 
+                  @click.stop="removeFromFavorites(animal.id)"
+                  class="text-gray-400 hover:text-red-500 transition p-2"
+                  title="Удалить из избранного"
+                >
+                  ❌
+                </button>
               </div>
             </div>
           </div>
-
+          
         </div>
+        
       </div>
-
     </div>
-
-    <!-- футер -->
-    <footer class="bg-[#7a0000] text-white  px-10 py-4 flex justify-end gap-x-8 rounded-[20px]">
-      <div>+7 (999) 999-99-99</div>
-      <div>г. Владикавказ</div>
-      <div>© 2026</div>
-    </footer>
-
+    
+    <AppFooter />
   </div>
 </template>
 
@@ -79,11 +140,22 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import Header from '../components/Header.vue'
+import AppFooter from '../components/AppFooter.vue'
 import { useFavorites } from '@/stores/useFavorites'
 
 const router = useRouter()
+const favoritesStore = useFavorites()
 
-const animals = ref([
+const userName = ref('Алана Бирагова')
+const avatarUrl = ref('')
+const joinDate = ref('15 марта 2024')
+const aboutText = ref('Люблю животных и помогаю приюту. Мечтаю забрать домой собаку! 🐕')
+const userEmail = ref('alana@gmail.com')
+const userPhone = ref('+7 (999) 123-45-67')
+const userCity = ref('Владикавказ')
+
+
+const allAnimals = ref([
   { id: 1, name: 'Рекс', age: 1, size: 'Маленький', image: '/images/dogs/Рекс 1.jpg' },
   { id: 2, name: 'Бобик', age: 4, size: 'Большой', image: '/images/dogs/Бобик 1.jpg' },
   { id: 3, name: 'Лайка', age: 3, size: 'Средний', image: '/images/dogs/Лайка 1.jpg' },
@@ -92,45 +164,48 @@ const animals = ref([
   { id: 6, name: 'Шарик', age: 1, size: 'Маленький', image: '/images/dogs/Шарик 1.png' }
 ])
 
-const { getFavoriteAnimals } = useFavorites()
+const favoriteAnimalsList = computed(() => {
+  return favoritesStore.getFavoriteAnimals(allAnimals.value)
+})
 
-const favoriteAnimals = computed(() => getFavoriteAnimals(animals.value))
+const favoriteCount = computed(() => favoritesStore.favoritesIds.value.length)
+
+
+const removeFromFavorites = (animalId) => {
+  favoritesStore.removeFavorite(animalId)
+}
 
 const goToAnimal = (animalId) => {
   router.push(`/animal/${animalId}`)
 }
 
-function getAgeText(age) {
+const getAgeText = (age) => {
   if (age === 1) return age + ' год'
   if (age >= 2 && age <= 4) return age + ' года'
   return age + ' лет'
 }
+
+const handleImageError = (e) => {
+  e.target.src = '/images/paw.png'
+}
 </script>
 
 <style scoped>
-.profile-itself {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  padding: 10px;
+.overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
 }
 
-.info {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 1fr 1fr;
-  grid-column: span 2;
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
 }
 
-.featured {
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: #DE2E2E;
+  border-radius: 10px;
 }
 
-.description {
-  width: 100%;
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: #8B0000;
 }
-
 </style>
