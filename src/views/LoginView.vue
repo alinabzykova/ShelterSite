@@ -1,10 +1,8 @@
 <template>
   <div class="flex flex-col min-h-screen bg-gray-50">
 
-    <!-- ОСНОВНОЙ КОНТЕНТ -->
     <div class="all-the-page flex-1 rounded-[20px]">
 
-      <!-- ЛЕВАЯ ЧАСТЬ -->
       <div class="that-left-header-dog-thing relative flex flex-col justify-between items-center text-center p-8">
 
         <h4 class="font-rubik font-extrabold text-[32px] text-center text-[#fff7f3]">
@@ -18,7 +16,6 @@
 
       </div>
 
-      <!-- ПРАВАЯ ЧАСТЬ -->
       <div class="flex flex-col justify-between relative bg-white">
 
         <nav class="absolute top-5 right-5 flex gap-10 text-black text-xl z-10">
@@ -30,7 +27,7 @@
         <div class="flex justify-center items-center flex-grow min-h-[500px]">
           <div class="flex flex-col items-center w-full max-w-[400px] px-4">
 
-            <!-- Форма входа -->
+ 
             <div v-if="isLoginMode" class="w-full">
               <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Вход в аккаунт</h2>
               
@@ -64,7 +61,6 @@
               </form>
             </div>
 
-            <!-- Форма регистрации -->
             <div v-else class="w-full">
               <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Регистрация</h2>
               
@@ -136,7 +132,6 @@
 
     </div>
 
-    <!-- ПРОСТОЙ ФУТЕР ТЕМНО-КРАСНОГО ЦВЕТА -->
     <footer class="bg-red-900 text-white py-4">
       <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row justify-between items-center gap-2 text-sm">
@@ -160,13 +155,11 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const isLoginMode = ref(true)
 
-// Форма входа
 const loginForm = ref({
   email: '',
   password: ''
 })
 
-// Форма регистрации
 const registerForm = ref({
   name: '',
   email: '',
@@ -174,7 +167,6 @@ const registerForm = ref({
   confirmPassword: ''
 })
 
-// Обработка входа
 const handleLogin = () => {
   if (loginForm.value.email && loginForm.value.password) {
     localStorage.setItem('isLoggedIn', 'true')
@@ -186,7 +178,6 @@ const handleLogin = () => {
   }
 }
 
-// Обработка регистрации
 const handleRegister = () => {
   if (registerForm.value.password !== registerForm.value.confirmPassword) {
     alert('Пароли не совпадают')

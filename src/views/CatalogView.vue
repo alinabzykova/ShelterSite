@@ -27,10 +27,8 @@ const filteredAnimals = computed(() => {
 <template>
   <div class="bg-[#f5f5f5] min-h-screen px-4 sm:px-6 lg:px-10 py-6">
 
-    <!-- ФИЛЬТР -->
     <div class="bg-white rounded-3xl p-6 mb-10 shadow-sm">
 
-      <!-- ВЕРХ: ФИЛЬТР + МЕНЮ -->
       <div class="flex justify-between items-center mb-4">
 
         <h2 class="text-2xl font-bold">
