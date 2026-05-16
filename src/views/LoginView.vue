@@ -135,11 +135,10 @@
     <footer class="bg-red-900 text-white py-4">
       <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row justify-between items-center gap-2 text-sm">
-          <p>© 2024 Приют "Спасённый хвост"</p>
+          <p>© 2026 Приют "Спасённый хвост"</p>
           <div class="flex gap-6">
-            <a href="#" class="hover:text-red-300 transition">О нас</a>
-            <a href="#" class="hover:text-red-300 transition">Контакты</a>
-            <a href="#" class="hover:text-red-300 transition">Помощь</a>
+            <a href="#">info@priut.ru</a>
+            <a href="#">г. Владикавказ,  ул. Ватутина, 44</a>
           </div>
         </div>
       </div>
