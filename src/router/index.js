@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CatalogView from '@/views/CatalogView.vue'
+import AddAnimalView from '../views/AddAnimalView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -33,6 +34,11 @@ const router = createRouter({
       path: '/animal/:id',
       name: 'animal',
       component: () => import('../views/AnimalView.vue')
+    },
+
+    {
+      path: '/add-animal',
+      component: AddAnimalView
     }
   ]
 })

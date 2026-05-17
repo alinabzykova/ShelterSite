@@ -63,7 +63,4 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-
-const isMenuOpen = ref(false)
 </script>

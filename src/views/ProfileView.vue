@@ -5,10 +5,9 @@
     <div class="container mx-auto px-4 py-8">
       <div class="max-w-6xl mx-auto">
         
-        <div class="bg-gradient-to-r from-[#5C0000] to-[#8B0000] rounded-3xl shadow-xl overflow-hidden mb-6">
+        <div class="bg-gradient-to-r from-[#5C0000] to-[#8B0000] rounded-3xl shadow-md mb-6">
           <div class="flex flex-col md:flex-row items-center gap-8 p-8">
             
-            <!-- Аватарка -->
             <div class="w-32 h-32 md:w-40 md:h-40 bg-white rounded-full flex items-center justify-center shadow-lg overflow-hidden">
               <img 
                 v-if="avatarUrl" 
@@ -109,7 +108,7 @@
                   @error="handleImageError"
                 >
                 <div class="flex-1">
-                  <h3 class="font-bold text-gray-800 group-hover:text-[#DE2E2E] transition">
+                  <h3 class="font-bold text-gray-800 transition">
                     {{ animal.name }}
                   </h3>
                   <p class="text-gray-500 text-sm">
@@ -191,21 +190,4 @@ const handleImageError = (e) => {
 </script>
 
 <style scoped>
-.overflow-y-auto::-webkit-scrollbar {
-  width: 6px;
-}
-
-.overflow-y-auto::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-.overflow-y-auto::-webkit-scrollbar-thumb {
-  background: #DE2E2E;
-  border-radius: 10px;
-}
-
-.overflow-y-auto::-webkit-scrollbar-thumb:hover {
-  background: #8B0000;
-}
 </style>

@@ -117,12 +117,12 @@
             <hr class="w-full border-t-2 border-gray-200 my-6">
 
             <p class="mt-5 text-center">
-              <a @click.prevent="isLoginMode = !isLoginMode" class="text-black text-sm cursor-pointer">
+              <button @click="isLoginMode = !isLoginMode" class="text-black text-sm cursor-pointer">
                 {{ isLoginMode ? 'Нет аккаунта?' : 'Есть аккаунт?' }} 
                 <span class="text-red-700 hover:underline">
                   {{ isLoginMode ? 'Зарегистрироваться' : 'Войти' }}
                 </span>
-              </a>
+              </button>
             </p>
 
           </div>

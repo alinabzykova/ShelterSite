@@ -40,8 +40,6 @@
 
 <script setup>
 const shareToFriends = () => {
-  const url = window.location.href
-  navigator.clipboard.writeText(url)
-  alert('Ссылка на сайт скопирована! Поделитесь с друзьями.')
+  alert('Отправьте ссылку на сайт друзьям!')
 }
 </script>

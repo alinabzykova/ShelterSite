@@ -25,55 +25,62 @@ const filteredAnimals = computed(() => {
 </script>
 
 <template>
+
   <div class="bg-[#f5f5f5] min-h-screen px-4 sm:px-6 lg:px-10 py-6">
 
     <div class="bg-white rounded-3xl p-6 mb-10 shadow-sm">
 
-      <div class="flex justify-between items-center mb-4">
-
+   
+      <div class="flex justify-between items-center mb-4 flex-wrap gap-4">
         <h2 class="text-2xl font-bold">
           Фильтр
         </h2>
 
-        <div class="flex gap-8 text-lg mr-0 lg:mr-10">
-          <router-link to="/" class="hover:text-red-500">
+
+        <div class="flex gap-6 text-lg">
+          <router-link to="/" class="hover:text-red-500 transition">
             Главная
           </router-link>
 
-          <router-link to="/profile" class="hover:text-red-500">
+          <router-link to="/profile" class="hover:text-red-500 transition">
             Профиль
           </router-link>
 
-          <router-link to="/login" class="hover:text-red-500">
+          <router-link to="/login" class="hover:text-red-500 transition">
             Войти
           </router-link>
         </div>
-
       </div>
 
 
-      <div class="flex gap-4 flex-wrap">
+      <div class="flex justify-between items-center flex-wrap gap-4">
+        <div class="flex gap-4 flex-wrap">
+          <select v-model="selectedAge" class="border rounded-xl px-4 py-2">
+            <option value="">Любой возраст</option>
+            <option value="1">1 год</option>
+            <option value="2">2 года</option>
+            <option value="3">3 года</option>
+            <option value="4">4 года</option>
+            <option value="5">5 лет</option>
+          </select>
 
-        <select v-model="selectedAge" class="border rounded-xl px-4 py-2">
-          <option value="">Любой возраст</option>
-          <option value="1">1 год</option>
-          <option value="2">2 года</option>
-          <option value="3">3 года</option>
-          <option value="4">4 года</option>
-          <option value="5">5 лет</option>
-        </select>
+          <select v-model="selectedSize" class="border rounded-xl px-4 py-2">
+            <option value="">Любой размер</option>
+            <option>Маленький</option>
+            <option>Средний</option>
+            <option>Большой</option>
+          </select>
+        </div>
 
-        <select v-model="selectedSize" class="border rounded-xl px-4 py-2">
-          <option value="">Любой размер</option>
-          <option>Маленький</option>
-          <option>Средний</option>
-          <option>Большой</option>
-        </select>
 
+        <router-link to="/add-animal">
+          <button class="bg-red-600 text-white px-5 py-2 rounded-xl hover:bg-red-700 transition whitespace-nowrap">
+            Добавить животное
+          </button>
+        </router-link>
       </div>
 
     </div>
-
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <AnimalCard

@@ -49,9 +49,9 @@
           </div>
         </div>
         
-        <div class="lg:w-1/2 animate-fade-in-up animation-delay-200 mt-8 md:mt-12 lg:mt-16">
+        <div class="lg:w-1/2 mt-8 md:mt-12 lg:mt-16">
           <img 
-            src="/public/images/dog.png" 
+            src="/images/dog.png" 
             alt="Счастливая собака"
             class="w-full h-auto object-contain"
           >
