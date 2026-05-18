@@ -1,15 +1,18 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import AnimalCard from '@/components/AnimalCard.vue'
 
-const animals = ref([
-  { id: 1, name: 'Рекс', age: 1, size: 'Маленький', images: '/images/dogs/Рекс 1.jpg' },
-  { id: 2, name: 'Бобик', age: 4, size: 'Большой', images: '/images/dogs/Бобик 1.jpg' },
-  { id: 3, name: 'Лайка', age: 3, size: 'Средний', images: '/images/dogs/Лайка 1.jpg' },
-  { id: 4, name: 'Джек', age: 5, size: 'Большой', images: '/images/dogs/Джек 1.jpg' },
-  { id: 5, name: 'Тузик', age: 3, size: 'Средний', images: '/images/dogs/Тузик 1.jpg' },
-  { id: 6, name: 'Шарик', age: 1, size: 'Маленький', images: '/images/dogs/Шарик 1.png' }
-])
+const animals = ref([])
+
+onMounted(async () => {
+
+  const response = await fetch('http://localhost/shelter-site/backend/animals.php')
+
+  const data = await response.json()
+
+  animals.value = data
+
+})
 
 const selectedSize = ref('')
 const selectedAge = ref('')

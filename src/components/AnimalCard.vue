@@ -15,7 +15,7 @@ function getAgeText(age){
       <div class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-md transition cursor-pointer">
 
         <img
-          :src="animal.images"
+          :src="animal.image"
           alt=""
           class="w-full aspect-square object-cover rounded-2xl"
         />
