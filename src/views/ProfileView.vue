@@ -24,16 +24,21 @@
             <div class="flex-1 text-center md:text-left">
               <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">
                 {{ userName }}
-              </h1>
-              <p class="text-red-200">На сайте с {{ joinDate }}</p>
-              
+              </h1>              
 
               <div class="mt-6 pt-4 border-t border-red-400/30">
+                
                 <div>
                   <div class="text-2xl font-bold text-white">{{ favoriteCount }}</div>
                   <div class="text-sm text-red-200">В избранном</div>
                 </div>
               </div>
+                <button
+                  @click="logout"
+                  class="mt-6 bg-white text-red-700 px-6 py-2 rounded-xl hover:bg-gray-100 transition"
+                >
+                  Выйти
+                </button>
             </div>
             
           </div>
@@ -49,9 +54,26 @@
               <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
                 <span>📝</span> О себе
               </h2>
-              <p class="text-gray-600 leading-relaxed">
+            <button
+                @click="isEditing = !isEditing"
+                class="mb-4 bg-red-600 text-white px-4 py-2 rounded-xl hover:bg-red-700 transition"
+              >
+                {{ isEditing ? 'Сохранить' : 'Редактировать' }}
+              </button>
+              
+              <textarea
+                v-if="isEditing"
+                v-model="aboutText"
+                class="w-full border rounded-xl p-3"
+              ></textarea>
+
+              <p
+                v-else
+                class="text-gray-600 leading-relaxed"
+              >
                 {{ aboutText }}
               </p>
+              
             </div>
             
             <div class="bg-white rounded-2xl shadow-md p-6">
@@ -65,11 +87,26 @@
                 </div>
                 <div class="flex items-center gap-3 text-gray-600">
                   <span class="text-lg">📱</span>
-                  <span>{{ userPhone }}</span>
+                  <input
+                    v-if="isEditing"
+                    v-model="userPhone"
+                    class="border rounded-lg px-2 py-1"
+                  />
+                  <span v-else>
+                    {{ userPhone }}
+                  </span>
                 </div>
                 <div class="flex items-center gap-3 text-gray-600">
                   <span class="text-lg">📍</span>
-                  <span>{{ userCity }}</span>
+                  <input
+                    v-if="isEditing"
+                    v-model="userCity"
+                    class="border rounded-lg px-2 py-1"
+                  />
+
+                  <span v-else>
+                    {{ userCity }}
+                  </span>
                 </div>
               </div>
             </div>
@@ -136,13 +173,19 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import Header from '../components/Header.vue'
 import AppFooter from '../components/AppFooter.vue'
 import { useFavorites } from '@/stores/useFavorites'
 
 onMounted(async () => {
+
+  const isLoggedIn = localStorage.getItem('isLoggedIn')
+
+  if (!isLoggedIn) {
+    router.push('/login')
+  }
 
   const response = await fetch(
     'http://localhost/shelter-site/backend/animals.php'
@@ -155,16 +198,32 @@ onMounted(async () => {
 const router = useRouter()
 const favoritesStore = useFavorites()
 
-const userName = ref('Алана Бирагова')
-const avatarUrl = ref('')
-const joinDate = ref('15 марта 2024')
-const aboutText = ref('Люблю животных и помогаю приюту. Мечтаю забрать домой собаку! 🐕')
-const userEmail = ref('alana@gmail.com')
-const userPhone = ref('+7 (999) 123-45-67')
-const userCity = ref('Владикавказ')
+const userName = ref(
+  localStorage.getItem('userName') || 'Пользователь'
+)
+const userEmail = ref(
+  localStorage.getItem('userEmail') || ''
+)
+const aboutText = ref(
+  localStorage.getItem('aboutText') ||
+  'Люблю животных и помогаю приюту 🐕'
+)
+const userPhone = ref(
+  localStorage.getItem('userPhone') ||
+  '+7 (999) 123-45-67'
+)
+const userCity = ref(
+  localStorage.getItem('userCity') ||
+  'Владикавказ'
+)
+const avatarUrl = ref(
+  localStorage.getItem('avatarUrl') || ''
+)
 
 
 const allAnimals = ref([])
+
+const isEditing = ref(false)
 
 const favoriteAnimalsList = computed(() => {
   return favoritesStore.getFavoriteAnimals(allAnimals.value)
@@ -190,6 +249,27 @@ const getAgeText = (age) => {
 const handleImageError = (e) => {
   e.target.src = '/images/paw.png'
 }
+
+const logout = () => {
+
+  localStorage.removeItem('isLoggedIn')
+  localStorage.removeItem('userName')
+  localStorage.removeItem('userEmail')
+
+  router.push('/login')
+}
+
+watch(aboutText, () => {
+  localStorage.setItem('aboutText', aboutText.value)
+})
+
+watch(userPhone, () => {
+  localStorage.setItem('userPhone', userPhone.value)
+})
+
+watch(userCity, () => {
+  localStorage.setItem('userCity', userCity.value)
+})
 </script>
 
 <style scoped>

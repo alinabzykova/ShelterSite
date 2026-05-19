@@ -18,6 +18,7 @@ function getAgeText(age){
           :src="animal.image"
           alt=""
           class="w-full aspect-square object-cover rounded-2xl"
+          @error="e => e.target.src = '/images/paw.png'"
         />
 
         <h2 class="text-xl font-bold mt-4">

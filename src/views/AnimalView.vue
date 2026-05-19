@@ -117,7 +117,7 @@ function handleFavoriteClick() {
         <div class="flex flex-col md:flex-row">
           <div class="md:w-1/2 p-6">
             <img 
-              :src="animal.images || animal.image" 
+              :src="animal.image"
               :alt="animal.name"
               class="w-full aspect-square object-cover rounded-2xl"
             />

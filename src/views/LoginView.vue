@@ -166,32 +166,81 @@ const registerForm = ref({
   confirmPassword: ''
 })
 
-const handleLogin = () => {
-  if (loginForm.value.email && loginForm.value.password) {
+const handleLogin = async () => {
+
+  const response = await fetch(
+    'http://localhost/shelter-site/backend/login.php',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: loginForm.value.email,
+        password: loginForm.value.password
+      })
+    }
+  )
+
+  const data = await response.json()
+
+  if (data.success) {
+
     localStorage.setItem('isLoggedIn', 'true')
+    localStorage.setItem('userName', data.name)
     localStorage.setItem('userEmail', loginForm.value.email)
-    alert('Успешный вход!')
+
+    alert('Вход выполнен')
+
     router.push('/profile')
+
   } else {
-    alert('Пожалуйста, заполните все поля')
+
+    alert(data.message)
   }
+
 }
 
-const handleRegister = () => {
+const handleRegister = async () => {
+
   if (registerForm.value.password !== registerForm.value.confirmPassword) {
+
     alert('Пароли не совпадают')
     return
   }
-  
-  if (registerForm.value.name && registerForm.value.email && registerForm.value.password) {
+
+  const response = await fetch(
+    'http://localhost/shelter-site/backend/register.php',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: registerForm.value.name,
+        email: registerForm.value.email,
+        password: registerForm.value.password
+      })
+    }
+  )
+
+  const data = await response.json()
+
+  if (data.success) {
+
+    alert('Регистрация успешна')
+
     localStorage.setItem('isLoggedIn', 'true')
-    localStorage.setItem('userEmail', registerForm.value.email)
     localStorage.setItem('userName', registerForm.value.name)
-    alert('Регистрация успешна!')
+    localStorage.setItem('userEmail', registerForm.value.email)
+
     router.push('/profile')
+
   } else {
-    alert('Пожалуйста, заполните все поля')
+
+    alert(data.message)
   }
+
 }
 </script>
 
