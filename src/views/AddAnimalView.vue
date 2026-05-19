@@ -7,7 +7,7 @@
         Добавить животное
       </h1>
 
-      <div class="flex flex-col gap-4">
+      <form @submit.prevent="addAnimal" class="flex flex-col gap-4">
 
         <input
           v-model="animal.name"
@@ -44,13 +44,13 @@
         >
 
         <button
-          @click="addAnimal"
+          type="submit"
           class="bg-red-600 text-white p-3 rounded-xl hover:bg-red-700"
         >
           Добавить
         </button>
 
-      </div>
+      </form>
 
     </div>
 
@@ -58,9 +58,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { reactive } from 'vue'
 
-const animal = ref({
+const animal = reactive({
   name: '',
   age: '',
   size: '',
@@ -68,7 +68,32 @@ const animal = ref({
   image: ''
 })
 
-const addAnimal = () => {
-  console.log(animal.value)
+const addAnimal = async () => {
+
+  const newAnimal = {
+    name: animal.name,
+    age: animal.age,
+    size: animal.size,
+    description: animal.description,
+    image: animal.image
+  }
+
+  console.log(newAnimal)
+
+  await fetch('http://localhost/shelter-site/backend/addAnimal.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newAnimal)
+  })
+
+  alert('Животное добавлено')
+
+  animal.name = ''
+  animal.age = ''
+  animal.size = ''
+  animal.description = ''
+  animal.image = ''
 }
 </script>

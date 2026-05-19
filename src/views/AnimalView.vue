@@ -68,12 +68,24 @@ const allAnimals = [
   }
 ]
 
-onMounted(() => {
+onMounted(async () => {
+
+  const response = await fetch(
+    'http://localhost/shelter-site/backend/animals.php'
+  )
+
+  const animals = await response.json()
+
   const id = Number(route.params.id)
-  const found = allAnimals.find(a => a.id === id)
+
+  const found = animals.find(
+    a => a.id == id
+  )
+
   if (found) {
     animal.value = found
   }
+
 })
 
 function getAgeText(age) {
@@ -105,7 +117,7 @@ function handleFavoriteClick() {
         <div class="flex flex-col md:flex-row">
           <div class="md:w-1/2 p-6">
             <img 
-              :src="animal.images" 
+              :src="animal.images || animal.image" 
               :alt="animal.name"
               class="w-full aspect-square object-cover rounded-2xl"
             />

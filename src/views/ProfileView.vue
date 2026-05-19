@@ -136,11 +136,21 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import Header from '../components/Header.vue'
 import AppFooter from '../components/AppFooter.vue'
 import { useFavorites } from '@/stores/useFavorites'
+
+onMounted(async () => {
+
+  const response = await fetch(
+    'http://localhost/shelter-site/backend/animals.php'
+  )
+
+  allAnimals.value = await response.json()
+
+})
 
 const router = useRouter()
 const favoritesStore = useFavorites()
@@ -154,14 +164,7 @@ const userPhone = ref('+7 (999) 123-45-67')
 const userCity = ref('Владикавказ')
 
 
-const allAnimals = ref([
-  { id: 1, name: 'Рекс', age: 1, size: 'Маленький', image: '/images/dogs/Рекс 1.jpg' },
-  { id: 2, name: 'Бобик', age: 4, size: 'Большой', image: '/images/dogs/Бобик 1.jpg' },
-  { id: 3, name: 'Лайка', age: 3, size: 'Средний', image: '/images/dogs/Лайка 1.jpg' },
-  { id: 4, name: 'Джек', age: 5, size: 'Большой', image: '/images/dogs/Джек 1.jpg' },
-  { id: 5, name: 'Тузик', age: 3, size: 'Средний', image: '/images/dogs/Тузик 1.jpg' },
-  { id: 6, name: 'Шарик', age: 1, size: 'Маленький', image: '/images/dogs/Шарик 1.png' }
-])
+const allAnimals = ref([])
 
 const favoriteAnimalsList = computed(() => {
   return favoritesStore.getFavoriteAnimals(allAnimals.value)

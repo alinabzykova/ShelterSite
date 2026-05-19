@@ -1,44 +1,52 @@
 [
-  {
-    "id": 1,
-    "name": "Рекс",
-    "age": 1,
-    "size": "Маленький",
-    "image": "/images/dogs/Рекс 1.jpg"
-  },
-  {
-    "id": 2,
-    "name": "Бобик",
-    "age": 4,
-    "size": "Большой",
-    "image": "/images/dogs/Бобик 1.jpg"
-  },
-  {
-    "id": 3,
-    "name": "Лайка",
-    "age": 3,
-    "size": "Средний",
-    "image": "/images/dogs/Лайка 1.jpg"
-  },
-  {
-    "id": 4,
-    "name": "Джек",
-    "age": 5,
-    "size": "Большой",
-    "image": "/images/dogs/Джек 1.jpg"
-  },
-  {
-    "id": 5,
-    "name": "Тузик",
-    "age": 3,
-    "size": "Средний",
-    "image": "/images/dogs/Тузик 1.jpg"
-  },
-  {
-    "id": 6,
-    "name": "Шарик",
-    "age": 1,
-    "size": "Маленький",
-    "image": "/images/dogs/Шарик 1.png"
-  }
+    {
+        "id": 1,
+        "name": "Рекс",
+        "age": 1,
+        "size": "Маленький",
+        "image": "\/images\/dogs\/Рекс 1.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Бобик",
+        "age": 4,
+        "size": "Большой",
+        "image": "\/images\/dogs\/Бобик 1.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Лайка",
+        "age": 3,
+        "size": "Средний",
+        "image": "\/images\/dogs\/Лайка 1.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Джек",
+        "age": 5,
+        "size": "Большой",
+        "image": "\/images\/dogs\/Джек 1.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Тузик",
+        "age": 3,
+        "size": "Средний",
+        "image": "\/images\/dogs\/Тузик 1.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Шарик",
+        "age": 1,
+        "size": "Маленький",
+        "image": "\/images\/dogs\/Шарик 1.png"
+    },
+    {
+        "id": 1779198572,
+        "name": "Бублик",
+        "age": 1,
+        "size": "Большой",
+        "description": "осдцултд",
+        "image": "\/images\/dog.png"
+    }
 ]
