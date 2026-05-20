@@ -74,13 +74,6 @@ const filteredAnimals = computed(() => {
             <option>Большой</option>
           </select>
         </div>
-
-
-        <router-link to="/add-animal">
-          <button class="bg-red-600 text-white px-5 py-2 rounded-xl hover:bg-red-700 transition whitespace-nowrap">
-            Добавить животное
-          </button>
-        </router-link>
       </div>
 
     </div>

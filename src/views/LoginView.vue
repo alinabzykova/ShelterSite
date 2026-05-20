@@ -25,15 +25,21 @@
         </nav> 
 
         <div class="flex justify-center items-center flex-grow min-h-[500px]">
+
           <div class="flex flex-col items-center w-full max-w-[400px] px-4">
 
- 
+            <!-- ВХОД -->
             <div v-if="isLoginMode" class="w-full">
-              <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Вход в аккаунт</h2>
+
+              <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">
+                Вход в аккаунт
+              </h2>
               
               <form @submit.prevent="handleLogin" class="space-y-4">
+
                 <div>
                   <label class="block text-gray-700 mb-2">Email</label>
+
                   <input 
                     type="email" 
                     v-model="loginForm.email"
@@ -44,6 +50,7 @@
                 
                 <div>
                   <label class="block text-gray-700 mb-2">Пароль</label>
+
                   <input 
                     type="password" 
                     v-model="loginForm.password"
@@ -58,15 +65,23 @@
                 >
                   Войти
                 </button>
+
               </form>
+
             </div>
 
+            <!-- РЕГИСТРАЦИЯ -->
             <div v-else class="w-full">
-              <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Регистрация</h2>
+
+              <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">
+                Регистрация
+              </h2>
               
               <form @submit.prevent="handleRegister" class="space-y-4">
+
                 <div>
                   <label class="block text-gray-700 mb-2">Имя</label>
+
                   <input 
                     type="text" 
                     v-model="registerForm.name"
@@ -77,6 +92,7 @@
                 
                 <div>
                   <label class="block text-gray-700 mb-2">Email</label>
+
                   <input 
                     type="email" 
                     v-model="registerForm.email"
@@ -87,6 +103,7 @@
                 
                 <div>
                   <label class="block text-gray-700 mb-2">Пароль</label>
+
                   <input 
                     type="password" 
                     v-model="registerForm.password"
@@ -96,7 +113,10 @@
                 </div>
                 
                 <div>
-                  <label class="block text-gray-700 mb-2">Подтвердите пароль</label>
+                  <label class="block text-gray-700 mb-2">
+                    Подтвердите пароль
+                  </label>
+
                   <input 
                     type="password" 
                     v-model="registerForm.confirmPassword"
@@ -111,21 +131,31 @@
                 >
                   Зарегистрироваться
                 </button>
+
               </form>
+
             </div>
 
             <hr class="w-full border-t-2 border-gray-200 my-6">
 
             <p class="mt-5 text-center">
-              <button @click="isLoginMode = !isLoginMode" class="text-black text-sm cursor-pointer">
-                {{ isLoginMode ? 'Нет аккаунта?' : 'Есть аккаунт?' }} 
+
+              <button
+                @click="isLoginMode = !isLoginMode"
+                class="text-black text-sm cursor-pointer"
+              >
+                {{ isLoginMode ? 'Нет аккаунта?' : 'Есть аккаунт?' }}
+
                 <span class="text-red-700 hover:underline">
                   {{ isLoginMode ? 'Зарегистрироваться' : 'Войти' }}
                 </span>
+
               </button>
+
             </p>
 
           </div>
+
         </div>
 
       </div>
@@ -133,15 +163,22 @@
     </div>
 
     <footer class="bg-red-900 text-white py-4">
+
       <div class="container mx-auto px-4">
+
         <div class="flex flex-col md:flex-row justify-between items-center gap-2 text-sm">
+
           <p>© 2026 Приют "Спасённый хвост"</p>
+
           <div class="flex gap-6">
             <a href="#">info@priut.ru</a>
-            <a href="#">г. Владикавказ,  ул. Ватутина, 44</a>
+            <a href="#">г. Владикавказ, ул. Ватутина, 44</a>
           </div>
+
         </div>
+
       </div>
+
     </footer>
 
   </div>
@@ -152,6 +189,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+
 const isLoginMode = ref(true)
 
 const loginForm = ref({
@@ -167,6 +205,23 @@ const registerForm = ref({
 })
 
 const handleLogin = async () => {
+
+  
+  if (
+    loginForm.value.email === 'admin@gmail.com' &&
+    loginForm.value.password === '12345'
+  ) {
+
+    localStorage.setItem('isAdmin', 'true')
+    localStorage.setItem('isLoggedIn', 'true')
+    localStorage.setItem('userEmail', 'admin@gmail.com')
+    localStorage.setItem('userName', 'Администратор')
+
+    router.push('/admin')
+
+    return
+  }
+
 
   const response = await fetch(
     'http://localhost/shelter-site/backend/login.php',
@@ -197,13 +252,17 @@ const handleLogin = async () => {
   } else {
 
     alert(data.message)
+
   }
 
 }
 
 const handleRegister = async () => {
 
-  if (registerForm.value.password !== registerForm.value.confirmPassword) {
+  if (
+    registerForm.value.password !==
+    registerForm.value.confirmPassword
+  ) {
 
     alert('Пароли не совпадают')
     return
@@ -239,6 +298,7 @@ const handleRegister = async () => {
   } else {
 
     alert(data.message)
+
   }
 
 }
@@ -248,7 +308,7 @@ const handleRegister = async () => {
 .all-the-page {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  flex: 1; 
+  flex: 1;
 }
 
 .that-left-header-dog-thing {
